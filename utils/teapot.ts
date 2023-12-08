@@ -18,6 +18,7 @@ class Teapot extends Component {
     this.lightCube = null
     this.loaded = false
     loadUtalTeapot().then((res) => {
+      console.log(this)
       this.loaded = true
       const [vertices, n] = res
       const vertexBuffer = gl.createBuffer()

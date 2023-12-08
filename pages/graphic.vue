@@ -52,8 +52,8 @@ function main() {
 onMounted(async () => {
   gl = c.value!.getContext('webgl')!
   ctx = hud.value!.getContext('2d')!
-  const v = (await import('public/vshader.vert?raw')).default
-  const f = (await import('public/fshader.frag?raw')).default
+  const v = (await import('../assets/vshader.vert?raw')).default
+  const f = (await import('../assets/fshader.frag?raw')).default
   // console.log(v, f)
   app = new App(gl, v, f)
   // initShaders(gl, v, f)

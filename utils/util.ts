@@ -96,7 +96,7 @@ function getMVPMatrix(M: glMatrix.mat4, V: glMatrix.mat4, P: glMatrix.mat4) {
 }
 
 async function loadUtalTeapot(): Promise<[Float32Array, number]> {
-  const teapot = (await import("public/teapot.tris?raw")).default
+  const teapot = (await import("../assets/teapot.tris?raw")).default
   const lines = teapot.split('\r\n').filter((line) => line.length > 0)
   const num_of_tris = parseInt(lines[0])
   const data = new Float32Array(
