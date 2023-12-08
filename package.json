@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxtjs/tailwindcss": "^6.10.1",
     "autoprefixer": "^10.4.16",
     "nuxt": "^3.8.2",
     "postcss": "^8.4.32",
