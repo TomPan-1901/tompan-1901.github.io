@@ -1,0 +1,4 @@
+[hook "postpush"]
+	cmdline = node publish.cjs
+	wait = true
+	show = true
