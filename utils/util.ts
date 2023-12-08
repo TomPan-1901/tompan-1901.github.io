@@ -1,6 +1,5 @@
 type RenderingContext = WebGLRenderingContext & { program?: WebGLProgram }
 import * as glMatrix from 'gl-matrix'
-import teapot from '@/assets/teapot.tris?raw'
 
 function loadShader(gl: RenderingContext, type: number, source: string): WebGLShader | null {
   const shader = gl.createShader(type)
@@ -61,8 +60,8 @@ function initShaders(gl: RenderingContext, vshader: string, fshader: string): Bo
   return true
 }
 
-function initVertexBuffers(gl: RenderingContext) {
-  const [vertices, n] = loadUtalTeapot()
+async function initVertexBuffers(gl: RenderingContext) {
+  const [vertices, n] = await loadUtalTeapot()
   const vertexBuffer = gl.createBuffer()
   if (!vertexBuffer) {
     console.error('Failed to create buffer')
@@ -96,7 +95,8 @@ function getMVPMatrix(M: glMatrix.mat4, V: glMatrix.mat4, P: glMatrix.mat4) {
   )
 }
 
-function loadUtalTeapot(): [Float32Array, number] {
+async function loadUtalTeapot(): Promise<[Float32Array, number]> {
+  const teapot = (await import("public/teapot.tris?raw")).default
   const lines = teapot.split('\r\n').filter((line) => line.length > 0)
   const num_of_tris = parseInt(lines[0])
   const data = new Float32Array(

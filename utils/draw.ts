@@ -4,8 +4,8 @@ import { initVertexBuffers, initShaders, getMVPMatrix, createViewMatrix, getSigh
 import { Teapot } from './teapot'
 import { Square } from './square'
 import { Cube } from './cube'
-import SkyboxFragShader from '@/shaders/skybox.frag?raw'
-import SkyboxVertexShader from '@/shaders/skybox.vert?raw'
+// import SkyboxFragShader from '@/shaders/skybox.frag?raw'
+// import SkyboxVertexShader from '@/shaders/skybox.vert?raw'
 
 class App {
   gl: RenderingContext
@@ -42,9 +42,9 @@ class App {
       throw new Error('Failed to initialize shaders')
     }
     const program = gl.program!
-    if (!initShaders(gl, SkyboxVertexShader, SkyboxFragShader)) {
-      throw new Error('Failed to initialize shaders')
-    }
+    // if (!initShaders(gl, SkyboxVertexShader, SkyboxFragShader)) {
+    //   throw new Error('Failed to initialize shaders')
+    // }
     this.skyboxProgram = gl.program!
     gl.program = program
     gl.useProgram(program)

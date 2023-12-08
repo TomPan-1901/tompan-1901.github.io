@@ -29,6 +29,8 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import { App } from '../utils/draw'
 import type { RenderingContext } from '../utils/util'
+// import vshader from 'public/vshader.vert?raw'
+// import fshader from 'public/fshader.frag?raw'
 const c = ref<HTMLCanvasElement | null>(null)
 const hud = ref<HTMLCanvasElement | null>(null)
 let time = 0.0
@@ -50,9 +52,10 @@ function main() {
 onMounted(async () => {
   gl = c.value!.getContext('webgl')!
   ctx = hud.value!.getContext('2d')!
-  const v = await useFetch<string>("./vshader.vert")
-  const f = await useFetch<string>("./fshader.frag")
-  app = new App(gl, v.data.value!, f.data.value!)
+  const v = (await import('public/vshader.vert?raw')).default
+  const f = (await import('public/fshader.frag?raw')).default
+  // console.log(v, f)
+  app = new App(gl, v, f)
   // initShaders(gl, v, f)
   time = performance.now() / 1000
   document.title = 'WebGL'
