@@ -1,24 +1,14 @@
 <template>
-  <div class="h-screen w-full flex overflow-auto relative">
-    <RouterLink
-      to="/"
-      class="absolute top-0 left-0 px-3 py-1 bg-cyan-400 rounded-full hover:bg-cyan-600 text-white"
-      >Home</RouterLink
-    >
+  <div class="h-screen flex overflow-auto relative container mx-auto">
+    <Title>WebGL</Title>
+
+    <RouterLink to="/" class="absolute top-4 left-4 z-10 px-3 py-1 bg-cyan-400 rounded-full hover:bg-cyan-600 text-white">
+      Home</RouterLink>
     <div class="m-auto">
       <div class="relative">
-        <canvas
-          tabindex="0"
-          class="outline-none relative z-0 top-0 left-0"
-          ref="c"
-          width="1024"
-          height="768"
-          @keydown.capture="app!.handleKeydown"
-          @mousemove.capture="app!.handleMousemove"
-          @mousedown="app!.handleMousedown"
-          @mouseup="app!.handleMouseup"
-          @keyup.capture="app!.handleKeyup"
-        ></canvas>
+        <canvas tabindex="0" class="outline-none relative z-0 top-0 left-0" ref="c" width="1024" height="768"
+          @keydown.capture="app!.handleKeydown" @mousemove.capture="app!.handleMousemove"
+          @mousedown="app!.handleMousedown" @mouseup="app!.handleMouseup" @keyup.capture="app!.handleKeyup"></canvas>
         <canvas class="absolute z-10 top-0 left-0" width="400" height="100" ref="hud"></canvas>
       </div>
     </div>
@@ -58,7 +48,6 @@ onMounted(async () => {
   app = new App(gl, v, f)
   // initShaders(gl, v, f)
   time = performance.now() / 1000
-  document.title = 'WebGL'
   main()
 })
 
