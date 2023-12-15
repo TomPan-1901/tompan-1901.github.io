@@ -55,10 +55,10 @@ class App {
     this.teapot = new Teapot(gl)
     const cube = new Cube(gl, this.teapot)
     const smallTeapot = new Square(gl, this.teapot)
-    cube.modelMatrix = glMatrix.mat4.translate(glMatrix.mat4.create(), glMatrix.mat4.create(), glMatrix.vec3.fromValues(0, 2.5, -10))
+    cube.modelMatrix = glMatrix.mat4.translate(glMatrix.mat4.create(), glMatrix.mat4.create(), glMatrix.vec3.fromValues(0, 5, -10))
     smallTeapot.modelMatrix = glMatrix.mat4.fromScaling(
       glMatrix.mat4.create(),
-      glMatrix.vec3.fromValues(10, 10, 10)
+      glMatrix.vec3.fromValues(20, 20, 20)
     )
     // glMatrix.mat4.translate(smallTeapot.modelMatrix, smallTeapot.modelMatrix, glMatrix.vec3.fromValues(10, 0, 0))
     this.teapot.addChild(smallTeapot)

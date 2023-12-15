@@ -1,14 +1,14 @@
-import { Component } from './component'
+import { GLComponent } from './glcomponent'
 import * as glMatrix from 'gl-matrix'
 import type { RenderingContext } from './util'
 import { getMVPMatrix } from './util'
 
-class Square extends Component {
+class Square extends GLComponent {
   vertexBuffer: WebGLBuffer | null = null
   vertices: Float32Array | null = null
   elementBuffer: WebGLBuffer | null = null
   texture: WebGLTexture | null = null
-  constructor(gl: RenderingContext, parent: Component | null = null) {
+  constructor(gl: RenderingContext, parent: GLComponent | null = null) {
     super(gl, parent)
     this.modelMatrix = glMatrix.mat4.create()
     this.children = []

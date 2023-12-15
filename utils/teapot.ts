@@ -1,15 +1,15 @@
-import { Component } from './component'
+import { GLComponent } from './glcomponent'
 import type { RenderingContext } from './util'
 import { loadUtalTeapot, getMVPMatrix, silver } from './util'
 import * as glMatrix from 'gl-matrix'
 import { Cube } from './cube'
-class Teapot extends Component {
+class Teapot extends GLComponent {
   vertextBuffer: WebGLBuffer | null = null
   vertices: Float32Array | null = null
-  lightPosition: glMatrix.vec3 = glMatrix.vec3.fromValues(-5, 5, 5)
+  lightPosition: glMatrix.vec3 = glMatrix.vec3.fromValues(-10, 5, 10)
   lightCube: Cube | null
   loaded: boolean
-  constructor(gl: RenderingContext, parent: Component | null = null) {
+  constructor(gl: RenderingContext, parent: GLComponent | null = null) {
     super(gl, parent)
     this.modelMatrix = glMatrix.mat4.create()
     this.children = []

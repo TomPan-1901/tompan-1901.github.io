@@ -1,12 +1,12 @@
 import * as glMatrix from 'gl-matrix'
 import type { RenderingContext } from './util'
-abstract class Component {
-  children: Component[] = []
+abstract class GLComponent {
+  children: GLComponent[] = []
   modelMatrix: glMatrix.mat4 = glMatrix.mat4.create()
   absoluteModelMatrix: glMatrix.mat4 = glMatrix.mat4.create()
   gl: RenderingContext
-  parent: Component | null
-  constructor(gl: RenderingContext, parent: Component | null = null) {
+  parent: GLComponent | null
+  constructor(gl: RenderingContext, parent: GLComponent | null = null) {
     this.gl = gl
     this.parent = parent
   }
@@ -19,10 +19,10 @@ abstract class Component {
     this.children.forEach((child) => child.draw(dt, viewMatrix, projectionMatrix))
   }
 
-  addChild(child: Component): void {
+  addChild(child: GLComponent): void {
     this.children.push(child)
   }
 
 }
 
-export { Component }
+export { GLComponent }

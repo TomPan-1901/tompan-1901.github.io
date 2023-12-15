@@ -1,11 +1,11 @@
 <template>
-  <div class="h-screen flex overflow-auto relative container mx-auto">
+  <div class="h-screen relative">
     <Title>WebGL</Title>
 
-    <RouterLink to="/" class="absolute top-4 left-4 z-10 px-3 py-1 bg-cyan-400 rounded-full hover:bg-cyan-600 text-white">
-      Home</RouterLink>
-    <div class="m-auto">
-      <div class="relative">
+    <NuxtLink to="/" class="absolute top-4 left-4 z-10 px-3 py-1 bg-cyan-400 rounded-full hover:bg-cyan-600 text-white">
+      Home</NuxtLink>
+    <div class="flex h-full">
+      <div class="relative m-auto" v-show="loaded">
         <canvas tabindex="0" class="outline-none relative z-0 top-0 left-0" ref="c" width="1024" height="768"
           @keydown.capture="app!.handleKeydown" @mousemove.capture="app!.handleMousemove"
           @mousedown="app!.handleMousedown" @mouseup="app!.handleMouseup" @keyup.capture="app!.handleKeyup"></canvas>
@@ -28,6 +28,7 @@ let animationHandle: number | null = null
 let gl: RenderingContext | null = null
 let app: App | null = null
 let ctx: CanvasRenderingContext2D | null = null
+const loaded = ref(false)
 function main() {
   const cur = performance.now() / 1000
   const dt = cur - time
@@ -42,12 +43,12 @@ function main() {
 onMounted(async () => {
   gl = c.value!.getContext('webgl')!
   ctx = hud.value!.getContext('2d')!
-  const v = (await import('../assets/vshader.vert?raw')).default
-  const f = (await import('../assets/fshader.frag?raw')).default
-  console.log(v, f)
+  const { default: v } = await import('../assets/vshader.vert?raw')
+  const { default: f } = await import('../assets/fshader.frag?raw')
   app = new App(gl, v, f)
   // initShaders(gl, v, f)
   time = performance.now() / 1000
+  loaded.value = true
   main()
 })
 

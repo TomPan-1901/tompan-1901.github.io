@@ -1,13 +1,13 @@
-import { Component } from './component'
+import { GLComponent } from './glcomponent'
 import { getMVPMatrix, type RenderingContext } from './util'
 import * as glMatrix from 'gl-matrix'
-class Cube extends Component {
+class Cube extends GLComponent {
   vertices: Float32Array
   elements: Uint8Array
   vertexBuffer: WebGLBuffer
   elementsBuffer: WebGLBuffer
   useLight: boolean = true
-  constructor(gl: RenderingContext, parent: Component | null = null, useLight: boolean = true) {
+  constructor(gl: RenderingContext, parent: GLComponent | null = null, useLight: boolean = true) {
     super(gl, parent)
     this.absoluteModelMatrix = glMatrix.mat4.create()
     this.modelMatrix = glMatrix.mat4.create()
@@ -49,7 +49,8 @@ class Cube extends Component {
 
   override draw(dt: number, viewMatrix: glMatrix.mat4, projectionMatrix: glMatrix.mat4): void {
     super.draw(dt, viewMatrix, projectionMatrix)
-    this.modelMatrix = glMatrix.mat4.rotateY(this.modelMatrix, this.modelMatrix, dt)
+    let tmp = glMatrix.mat4.rotateY(glMatrix.mat4.create(), this.parent!.modelMatrix, dt * 0.5)
+    glMatrix.mat4.multiply(this.modelMatrix, tmp, this.modelMatrix)
     const gl = this.gl
     gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer)
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.elementsBuffer)

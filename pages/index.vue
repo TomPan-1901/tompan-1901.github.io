@@ -9,7 +9,7 @@ import HeaderMenu from '../components/HeaderMenu.vue'
       <HeaderMenu />
     </header>
     <div class="container mx-auto p-2">
-      <h1 class="sm:text-4xl text-2xl font-extrabold tracking-[4px]">YUCHEN PAN</h1>
+      <h1 class="sm:text-4xl text-2xl font-extrabold tracking-[4px] capitalize">Yuchen Pan</h1>
       <p class="max-w-xl">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi quod cum sed nemo totam
         magnam sequi minima, ipsum, inventore reiciendis sapiente esse est quaerat, autem atque
